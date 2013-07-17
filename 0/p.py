@@ -9,7 +9,7 @@ import httplib
 class PageHandler(webapp2.RequestHandler):
 	def get(self, page=None):
 		conn = httplib.HTTPSConnection('www.google.cn', 443)
-		conn.request('GET', 'https://code.google.com/p/'+page, headers = {"Host": "code.google.com"})
+		conn.request('GET', '/p/'+page, headers = {"Host": "code.google.com"})
 		res = conn.getresponse()
 		self.response.write(res.read())
 
