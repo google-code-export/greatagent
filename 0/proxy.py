@@ -9,13 +9,13 @@ import httplib
 class PageHandler(webapp2.RequestHandler):
 	def get(self, page=None):
 		conn = httplib.HTTPSConnection('www.google.cn', 443)
-		conn.request('GET', '/p/'+page, headers = {"Host": "code.google.com"})
+		conn.request('GET', '/'+page, headers = {"Host": "code.google.com"})
 		res = conn.getresponse()
 		self.response.write(res.read())
 
 
 app = webapp2.WSGIApplication([
-	(r'/p/(.*)', PageHandler)
+	(r'/(.*)', PageHandler)
 ], debug=True)
 
 from bae.core.wsgi import WSGIApplication
