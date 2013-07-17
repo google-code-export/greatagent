@@ -15,5 +15,6 @@ app = webapp2.WSGIApplication([
 	(r'/', PageHandler)
 ], debug=True)
 
+
 from bae.core.wsgi import WSGIApplication
 application = WSGIApplication(app)
