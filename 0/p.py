@@ -7,11 +7,13 @@ import urllib2
 
 class PageHandler(webapp2.RequestHandler):
 	def get(self, page=None):
-		self.response.write(urllib2.urlopen('https://code.google.com/p/'+page).read())
+		conn = httplib.HTTPSConnection('www.google.cn', 443)
+		conn.request('GET', 'https://code.google.com/p/'+page, headers = {"Host": "code.google.com"})
+		res = conn.getresponse()
+		self.response.write(res.read())
 
 
 app = webapp2.WSGIApplication([
-	# (r'/api', ApiHandler),
 	(r'/p/(.*)', PageHandler)
 ], debug=True)
 
